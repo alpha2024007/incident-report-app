@@ -1,1 +1,132 @@
  /* Your own styles comes here */
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+
+ *{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+ }
+
+ body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+header {
+  height: 8vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 150px;
+}
+
+header ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+header ul li {
+  list-style: none;
+}
+
+header ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ .container {
+  width: 100%;
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1495427513693-3f40da04b3fd?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  display: flex ;
+  justify-content: center;
+  padding-top: 18vh;
+ }
+
+ .card {
+  max-width: 80%;
+  width: 350px;
+  height: max-content;
+  padding: 16px;
+  border-radius: 10px;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+ }
+
+ .card h2 {
+  padding: 8px;
+ }
+
+ form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+ }
+
+ form input {
+  padding: 10px;
+  outline: none ;
+  border: 1px solid lightgray;
+  font-family: inherit;
+ }
+
+ .send {
+  padding: 10px;
+  background-color: green;
+  border: 0;
+  border-radius: 4px;
+  color: white;
+  margin: 20px 0px;
+  transition: all 0.2s ease-out;
+  font-family: inherit;
+ }
+
+ .send:hover {
+  background-color: rgb(46, 153, 46);
+  cursor: pointer;
+ }
+
+ .audio {
+  border: 1px solid lightgray;
+  display: flex;
+  padding: 8px;
+  margin: 6px 0px;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+ }
+
+ .audio-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: orangered;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+ }
+
+ .audio-btn:hover {
+  background-color: rgb(216, 69, 16);
+ }
+
+ .svg {
+  max-width: 50%;
+  max-height: 50%;
+ }
+
+ /* input[type='file'] {
+  
+ } */

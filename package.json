@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "build": "webpack --mode=development",
-    "webpackServer": "webpack-dev-server --open --mode=development",
+    "serve": "webpack-dev-server --open --mode=development",
     "lint": "eslint src --ext .js",
     "start": "npm run build && npm run webpackServer"
   },
@@ -28,6 +28,7 @@
     "webpack-dev-server": "4.15.1"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "bootstrap": "^5.3.3",
+    "firebase": "^10.12.1"
   }
 }
