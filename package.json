@@ -1,0 +1,33 @@
+{
+  "name": "salesvisits",
+  "version": "1.0.0",
+  "description": "A merchandising",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack --mode=development",
+    "webpackServer": "webpack-dev-server --open --mode=development",
+    "lint": "eslint src --ext .js",
+    "start": "npm run build && npm run webpackServer"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.22.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.8.1",
+    "eslint": "^8.42.0",
+    "eslint-webpack-plugin": "^4.0.1",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.3",
+    "jest": "^29.5.0",
+    "style-loader": "^3.3.0",
+    "webpack": "5.87.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "4.15.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  }
+}
