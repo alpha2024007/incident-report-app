@@ -1,8 +1,6 @@
-// import 'bootstrap';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-// import {db} from './firebase.js'
-
+import { db, storage } from './firebase.js';
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 class BaseComponent {
   constructor() {
@@ -30,6 +28,7 @@ class RecordingComponent extends BaseComponent {
     this.mediaRecorder = null;
     this.voiceChunks = [];
     this.voiceBlob = null;
+    this.voiceNoteURL = null;
     this.countdownTimer = null;
     this.initRecording();
   }
@@ -53,8 +52,9 @@ class RecordingComponent extends BaseComponent {
         this.mediaRecorder.addEventListener('dataavailable', event => {
           this.voiceChunks.push(event.data);
         });
-        this.mediaRecorder.addEventListener('stop', () => {
+        this.mediaRecorder.addEventListener('stop', async () => {
           this.voiceBlob = new Blob(this.voiceChunks, { type: 'audio/wav' });
+          await this.uploadAudio(this.voiceBlob);
         });
         this.startTimer();
       })
@@ -63,14 +63,27 @@ class RecordingComponent extends BaseComponent {
       });
   }
 
+  async uploadAudio(blob) {
+    const fileName = `recordings/${new Date().toISOString()}.wav`;
+    const audioRef = ref(storage, fileName);
+
+    try {
+      const snapshot = await uploadBytes(audioRef, blob);
+      this.voiceNoteURL = await getDownloadURL(snapshot.ref);
+      console.log('File available at', this.voiceNoteURL);
+    } catch (error) {
+      this.showAlert('Error uploading audio: ' + error.message);
+    }
+  }
+
   stopRecording() {
     this.mediaRecorder.stop();
     clearInterval(this.countdownTimer);
-    this.timerDisplay.textContent = '15:00';
+    this.timerDisplay.textContent = '00:30';
   }
 
   startTimer() {
-    let timeLeft = 15 * 60;
+    let timeLeft = 30;
     this.timerDisplay.textContent = this.formatTime(timeLeft);
     this.countdownTimer = setInterval(() => {
       timeLeft -= 1;
@@ -101,24 +114,44 @@ class SOSForm extends RecordingComponent {
       const location = await this.getUserLocation();
       const callerName = this.nameInput.value;
       const callerNumber = this.phoneNumberInput.value;
-      const images = Array.from(this.fileInput.files).map(file => URL.createObjectURL(file));
       const message = "This is an SOS, please help";
       const distressType = this.distressTypeSelect.value; 
+
+      const imageFiles = Array.from(this.fileInput.files);
+      const imageUrls = await this.uploadImages(imageFiles);
 
       const sosMessage = {
         callTime,
         location,
-        voiceNote: this.voiceBlob ? URL.createObjectURL(this.voiceBlob) : null,
+        voiceNote: this.voiceNoteURL || null,
         message,
         callerName,
         callerNumber,
-        images,
+        images: imageUrls,
         distressType
       };
 
-      // this.sendToFirebase(sosMessage);
-      console.log(sosMessage)
+      console.log(sosMessage);
+      this.sendToFirebase(sosMessage);
     });
+  }
+
+  async uploadImages(files) {
+    const uploadPromises = files.map(async (file) => {
+      const fileName = `images/${new Date().toISOString()}-${file.name}`;
+      const imageRef = ref(storage, fileName);
+
+      try {
+        const snapshot = await uploadBytes(imageRef, file);
+        const downloadURL = await getDownloadURL(snapshot.ref);
+        return downloadURL;
+      } catch (error) {
+        this.showAlert('Error uploading image: ' + error.message);
+        return null;
+      }
+    });
+
+    return Promise.all(uploadPromises);
   }
 
   async getUserLocation() {
@@ -137,7 +170,6 @@ class SOSForm extends RecordingComponent {
   }
 
   sendToFirebase(sosMessage) {
-    const db = firebase.firestore();
     db.collection('sosMessages').add(sosMessage)
       .then(() => {
         this.showAlert('SOS sent successfully');
