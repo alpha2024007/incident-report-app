@@ -1,4 +1,3 @@
-import './css/styles.css';
 import { db, storage } from './firebase.js';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
