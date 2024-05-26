@@ -70,7 +70,7 @@ class RecordingComponent extends BaseComponent {
     try {
       const snapshot = await uploadBytes(audioRef, blob);
       this.voiceNoteURL = await getDownloadURL(snapshot.ref);
-      // console.log('File available at', this.voiceNoteURL);
+      // console.log('File available at' this url this.voiceNoteURL);
     } catch (error) {
       this.showAlert('Error uploading audio: ' + error.message);
     }
