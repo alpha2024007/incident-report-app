@@ -127,6 +127,21 @@ header ul li a {
   max-height: 50%;
  }
 
+.distress-type {
+  border: 1px solid lightgray;
+  padding: 10px ;
+  color: gray;
+  font-size: 14px;
+  text-align: left;
+}
+
+#sos-type {
+  padding: 4px;
+  border: 1px solid lightgray;
+  outline: 0;
+}
+
+
  /* input[type='file'] {
   
  } */
