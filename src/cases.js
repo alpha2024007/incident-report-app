@@ -4,11 +4,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const container = document.querySelector('.container');
 
   try {
-    const sosMessages = await db.collection('sosMessages')
-                                .orderBy('callTime', 'desc')
-                                .get();
+    const sosMessagesSnapshot = await db.collection('sosMessages')
+                                       .orderBy('callTime', 'desc')
+                                       .get();
 
-    sosMessages.forEach(doc => {
+    sosMessagesSnapshot.forEach(doc => {
       const data = doc.data();
       const distressCard = document.createElement('div');
       distressCard.classList.add('distress-card');
@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         <p>Caller number: ${data.callerNumber}</p>
         <p>Call time: ${new Date(data.callTime).toLocaleString()}</p>
         <p>Distress location: Latitude ${data.location.latitude}, Longitude ${data.location.longitude}</p>
-        <p>Help dispatched: ${data.message}</p>
+        <p>Message:</p>
         <div>
           ${data.voiceNote ? `<audio controls><source src="${data.voiceNote}" type="audio/wav">Your browser does not support the audio element.</audio>` : 'No voice note available'}
         </div>
-        <div>
-          ${data.images.length ? data.images.map(image => `<img src="${image}" alt="media" style="max-width: 100px;"/>`).join('') : 'No media'}
+        <div class='image'>
+          ${data.images && data.images.length ? data.images.map(image => `<img src="${image}" alt="media" style="max-width: 100px;"/>`).join('') : 'No media'}
         </div>
       `;
       container.appendChild(distressCard);

@@ -1,0 +1,62 @@
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.distress-card {
+  padding: 12px;
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+  margin: 6px 0px;
+}
+
+.distress-card:hover {
+  box-shadow: 4px 4px 12px rgba(0,0,0,0.5);
+  margin: 6px 0px;
+}
+
+header {
+  height: 8vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 150px;
+}
+
+header ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+header ul li {
+  list-style: none;
+}
+
+header ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  background: url('https://images.unsplash.com/photo-1495427513693-3f40da04b3fd?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0px;
+    min-height: 100vh;
+}
+
+.image {
+  width: 100%;
+  height: 50px;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}

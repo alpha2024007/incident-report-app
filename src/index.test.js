@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import SOSForm from './path-to-your-SOSForm';
+import SOSForm from './index.js';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/storage';
