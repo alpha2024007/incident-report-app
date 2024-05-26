@@ -1,6 +1,7 @@
 import { db, storage } from './firebase.js';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
+
 class BaseComponent {
   constructor() {
     this.getElements();
@@ -69,7 +70,7 @@ class RecordingComponent extends BaseComponent {
     try {
       const snapshot = await uploadBytes(audioRef, blob);
       this.voiceNoteURL = await getDownloadURL(snapshot.ref);
-      console.log('File available at', this.voiceNoteURL);
+      // console.log('File available at', this.voiceNoteURL);
     } catch (error) {
       this.showAlert('Error uploading audio: ' + error.message);
     }
@@ -130,7 +131,7 @@ class SOSForm extends RecordingComponent {
         distressType
       };
 
-      console.log(sosMessage);
+      // console.log(sosMessage);
       this.sendToFirebase(sosMessage);
     });
   }

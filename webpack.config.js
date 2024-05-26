@@ -6,10 +6,10 @@ const ESLintPlugin = require('eslint-webpack-plugin'); // ESLint plugin for lint
 module.exports = {
   entry: {
     index: './src/index.js',
-    cases: './src/cases.js', // Assuming you have a separate entry point for cases
+    cases: './src/cases.js', 
   },
   output: {
-    filename: '[name].bundle.js', // Use dynamic names based on entry point names
+    filename: '[name].bundle.js', 
     path: path.resolve(__dirname, 'dist'),
   },
   devtool: 'eval-source-map',
@@ -20,15 +20,15 @@ module.exports = {
       title: 'Home',
       filename: 'index.html',
       template: './src/index.html',
-      chunks: ['index'], // JavaScript chunk to include
-      inject: 'body', // Inject script tags into the body
+      chunks: ['index'], 
+      inject: 'body', 
     }),
     new HtmlWebpackPlugin({
       title: 'Cases',
-      template: './src/cases.html', // Path to your HTML template
-      filename: 'cases.html', // Output filename
-      chunks: ['cases'], // JavaScript chunk to include
-      inject: 'body', // Inject script tags into the body
+      template: './src/cases.html', 
+      filename: 'cases.html', 
+      chunks: ['cases'], 
+      inject: 'body', 
     }),
   ],
   module: {
@@ -37,7 +37,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader',
+          'css-loader'
         ],
       },
       {

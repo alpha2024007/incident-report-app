@@ -15,12 +15,15 @@ By leveraging modern technology, the app aims to streamline the emergency respon
 #PROJECT SETUP INSTRUCTIONS
 
 Open the terminal on your machine
-Clone this template repository (Links to an external site.) on your local machine
-Rename the clone repository with a relevant name, navigate to the renamed cloned repository and run npm install to install all the required dependencies
+Clone this template repository https://github.com/SamTomashi/moringa-mpesa-mini-apps-capstone-project-template.git
+Rename the clone repository with a relevant name, navigate to the renamed cloned repository.
+Run npm install to install all the required dependencies
 Create a remote repository on your GitHub account
 Copy and link your new GitHub repository URL to your local project git remote add origin your-repository-url
-Install firebase
+Install firebase, npm install firebase
 
 #LIVE LINK
 
+
 #COPYRIGHT & LICENCE
+MIT licence Copyright (c) [2024] [AlhajiTejan]
